@@ -1,25 +1,25 @@
 import { test, expect } from '@playwright/test'
+import { goToFavorites } from './navigation.js'
 
 test.describe('Mina-böcker-vy', () => {
-    
-    test.beforeEach(async ({ page }) => {
-        await page.goto('https://tap-ht24-testverktyg.github.io/exam-template/')
-    })
-    
-    test('Kunna se mina Favoritmarkerade böcker', async ({ page }) => {
-        const starButton = page.locator('.book .star').first()
 
-        await starButton.click()
+  test.beforeEach(async ({ page }) => {
+    await page.goto('https://tap-ht24-testverktyg.github.io/exam-template/')
+  })
 
-        await expect(starButton).toHaveClass(/selected/)
-        
-        await page.getByTestId('favorites').click()
+  test('Kunna se flera favoritmarkerade böcker', async ({ page }) => {
+    const starButtons = page.locator('.book .star')
 
-        const faveBooks = page.locator('.book')
+    await starButtons.nth(0).click()
+    await starButtons.nth(1).click()
 
-        await expect(faveBooks).toHaveCount(1)
+    await expect(starButtons.nth(0)).toHaveClass(/selected/)
+    await expect(starButtons.nth(1)).toHaveClass(/selected/)
 
-    })
+    await goToFavorites(page)
 
-
+    const faveBooks = page.locator('.book')
+    await expect(faveBooks).toHaveCount(2)
+  })
 })
+

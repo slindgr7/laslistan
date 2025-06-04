@@ -8,6 +8,7 @@ Som användare vill jag kunna favoritmarkera böcker som fångar mitt intresse, 
 
 ## AddBookView
 Som användare vill jag kunna lägga till en bok så att andra kan ta del av mina favorit boktips.
+Som användare vill jag kunna se min tillagda bok i katalog-vyn. 
 
 ## MybooksView
 Som användare vill jag kunna se mina favoritmarkerade böcker, så att jag kan välja från mitt urval vilka böcker att låna först.
